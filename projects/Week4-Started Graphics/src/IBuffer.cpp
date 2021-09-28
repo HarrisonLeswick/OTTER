@@ -20,6 +20,7 @@ IBuffer::~IBuffer() {
 void IBuffer::LoadData(const void* data, size_t elementSize, size_t elementCount) {
 	// Note, this is part of the bindless state access stuff added in 4.5
 	glNamedBufferData(_handle, elementSize * elementCount, data, (GLenum)_usage);
+
 	_elementCount = elementCount;
 	_elementSize = elementSize;
 }

@@ -2,6 +2,7 @@
 #include "IBuffer.h"
 #include <cstdint>
 #include <stdexcept>
+#include <memory>
 
 /// <summary>
 /// Represents the element type of an Index Buffer
@@ -18,7 +19,13 @@ enum class IndexType {
 /// </summary>
 class IndexBuffer : public IBuffer
 {
+
 public:
+	typedef std::shared_ptr<IndexBuffer> Sptr;
+
+	static inline Sptr Create(BufferUsage usage = BufferUsage::StaticDraw) {
+		return std::make_shared<IndexBuffer>(usage);
+	}
 	/// <summary>
 	/// Creates a new index buffer, with the given usage. Data will still need to be uploaded before it can be used
 	/// </summary>
